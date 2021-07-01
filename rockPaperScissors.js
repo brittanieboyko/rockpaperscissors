@@ -24,4 +24,13 @@ function playRound(userSelection, computerSelection) {
         return "User wins! Scissors beat paper.";
     }
 }
-console.log(playRound("Rock", computerPlay()));
+
+function game() {
+    let gameCount = 1;
+    while (gameCount < 6) {
+        console.log(playRound("Rock", computerPlay()));
+        gameCount++;
+    }
+}
+
+game();
