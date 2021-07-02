@@ -4,34 +4,40 @@ function computerPlay() {
     return randomComputerSelection;
 }
 
-function playRound(computerSelection) {
-    let formattedUserSelection = getPlayerSelection().toLowerCase();
-    console.log("user:", formattedUserSelection, "computer:", computerSelection);
-    if (formattedUserSelection === computerSelection) {
+function playRound(userSelection, computerSelection) {
+    console.log("user:", userSelection, "computer:", computerSelection);
+
+    if (userSelection === computerSelection) {
         return "draw!";
-    } else if (formattedUserSelection === "rock" && computerSelection === "scissors") {
+    } else if (userSelection === "rock" && computerSelection === "scissors") {
         return "User wins! Rock beats scissors.";
-    } else if (formattedUserSelection === "rock" && computerSelection === "paper") {
+    } else if (userSelection === "rock" && computerSelection === "paper") {
         return "Computer wins! Paper beats rock.";
-    } else if (formattedUserSelection === "paper" && computerSelection === "rock") {
+    } else if (userSelection === "paper" && computerSelection === "rock") {
         return "User wins! Paper beats rock.";
-    } else if (formattedUserSelection === "paper" && computerSelection === "scissors") {
+    } else if (userSelection === "paper" && computerSelection === "scissors") {
         return "Computer wins! Scissors beat paper.";
-    } else if (formattedUserSelection === "scissors" && computerSelection === "rock") {
+    } else if (userSelection === "scissors" && computerSelection === "rock") {
         return "Computer wins! Rock beats paper.";
-    } else if (formattedUserSelection === "scissors" && computerSelection === "paper") {
+    } else if (userSelection === "scissors" && computerSelection === "paper") {
         return "User wins! Scissors beat paper.";
+    } else {
+        return "Please enter correct value. Try again";
     }
 }
 
-function getPlayerSelection() {
-    return window.prompt("Choose rock, paper, or scissors");
+function userPlay() {
+    let userSelection = window.prompt("Choose rock, paper, or scissors");
+    if (userSelection === null) {
+        console.log("null")
+        return;
+    } else return userSelection.toLowerCase();;
 }
 
 function game() {
     let gameCount = 1;
     while (gameCount <= 5) {
-        console.log(playRound(computerPlay()));
+        console.log(playRound(userPlay(), computerPlay()));
         gameCount++;
     }
 }
