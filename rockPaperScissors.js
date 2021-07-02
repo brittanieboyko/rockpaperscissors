@@ -4,10 +4,9 @@ function computerPlay() {
     return randomComputerSelection;
 }
 
-function playRound(userSelection, computerSelection) {
-
-    const formattedUserSelection = userSelection.toLowerCase();
-    console.log(formattedUserSelection, computerSelection);
+function playRound(computerSelection) {
+    let formattedUserSelection = getPlayerSelection().toLowerCase();
+    console.log("user:", formattedUserSelection, "computer:", computerSelection);
     if (formattedUserSelection === computerSelection) {
         return "draw!";
     } else if (formattedUserSelection === "rock" && computerSelection === "scissors") {
@@ -25,10 +24,14 @@ function playRound(userSelection, computerSelection) {
     }
 }
 
+function getPlayerSelection() {
+    return window.prompt("Choose rock, paper, or scissors");
+}
+
 function game() {
     let gameCount = 1;
-    while (gameCount < 6) {
-        console.log(playRound("Rock", computerPlay()));
+    while (gameCount <= 5) {
+        console.log(playRound(computerPlay()));
         gameCount++;
     }
 }
